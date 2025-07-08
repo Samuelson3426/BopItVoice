@@ -1,6 +1,12 @@
-from playsound3 import playsound
+try:
+    from playsound3 import playsound
+except ModuleNotFoundError as e:
+    raise ModuleNotFoundError("Please install playsound3 using pip: 'pip install playsound3'")
 
-import voices
+try:
+    import voices
+except:
+    raise FileNotFoundError("main.py needs to be in the same directory as voices.py to function correctly.")
 
 greet_text = 'Enter number for Bop It to say (1-999): '
 
