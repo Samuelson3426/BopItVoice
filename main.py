@@ -81,9 +81,14 @@ def get_voice_list(numstr): # will return a list of voices to play to sound like
 
     return voice_list
 
+def count_to_999():
+    for i in range(1000):
+        bopit_say(conv_str_int_to_three_letters(str(i)))
+
 def conv_str_int_to_three_letters(str_int):
     if str_int == "":
-        return '0-1'
+        count_to_999()
+        return
     
     new_str = ""
     
