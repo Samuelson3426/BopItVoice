@@ -133,6 +133,7 @@ def dash_string_for(string):
         newstr += '='
     return newstr
 
+playsound(voices.bop_it())
 while True:
     print(dash_string_for(greet_text))
     bopit_say(conv_str_int_to_three_letters(input(greet_text)))

@@ -3,6 +3,10 @@ from random import randint
 
 voice_path = 'BopItExtreme2-Numbers'
 voice_path_error = 'BopItExtreme2-Error'
+voice_bop_it = 'BobItExtreme2-BopIt.wav'
+
+def bop_it():
+    return voice_bop_it
 
 def plain_numbers():
     sdv = []
