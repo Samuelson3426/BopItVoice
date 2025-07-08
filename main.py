@@ -82,6 +82,9 @@ def get_voice_list(numstr): # will return a list of voices to play to sound like
     return voice_list
 
 def conv_str_int_to_three_letters(str_int):
+    if str_int == "":
+        return '0-1'
+    
     new_str = ""
     
     if len(str_int) == 3:
