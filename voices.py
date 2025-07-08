@@ -1,6 +1,8 @@
 import os
+from random import randint
 
 voice_path = 'BopItExtreme2-Numbers'
+voice_path_error = 'BopItExtreme2-Error'
 
 def plain_numbers():
     sdv = []
@@ -10,6 +12,14 @@ def plain_numbers():
         else:
             sdv.append("0.wav")
     return sdv
+
+def random_error():
+    x = []
+    all_files = os.listdir(voice_path_error)
+    for i in range(len(all_files)):
+        if all_files[i].endswith('.wav'):
+            x.append(os.path.join(voice_path_error, all_files[i]))
+    return x[randint(0, len(x)-1)]
 
 def fif():
     return os.path.join(voice_path, 'Fif-.wav')

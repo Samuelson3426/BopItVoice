@@ -35,7 +35,7 @@ def bopit_say(numberstr):
 
     if voice_list == None:
         voice_list = []
-        voice_list.append(voices.twen())
+        voice_list.append(voices.random_error())
 
     for i in range(len(voice_list)):
         playsound(voice_list[i])
