@@ -2,6 +2,8 @@ from playsound3 import playsound
 
 import voices
 
+greet_text = 'Enter number for Bop It to say (1-999): '
+
 def gen_one_digit(numstr, vl): # pretty simple - add plain number if not 0
     if int(numstr[2]) != 0:
         vl.append(voices.plain_numbers()[int(numstr[2])])
@@ -94,16 +96,28 @@ def conv_str_int_to_three_letters(str_int):
         return new_str
         
             
-
 def bopit_say(numberstr):
-    voice_list = get_voice_list(numberstr)
+    try:
+        if int(numberstr) < 1 or int(numberstr) > 999:
+            voice_list = [voices.random_error()]
+        else:
+            voice_list = get_voice_list(numberstr)
+    except:
+        voice_list = [voices.random_error()]
 
-    if voice_list == None:
-        voice_list = []
-        voice_list.append(voices.random_error())
-
+    print()
     for i in range(len(voice_list)):
+        print(voice_list[i])
         playsound(voice_list[i])
+    print(f'{dash_string_for(numberstr)}\n{numberstr}')
+
+
+def dash_string_for(string):
+    newstr = ""
+    for i in range(len(string)):
+        newstr += '='
+    return newstr
 
 while True:
-    bopit_say(conv_str_int_to_three_letters(input("BopIt Says: ")))
+    print(dash_string_for(greet_text))
+    bopit_say(conv_str_int_to_three_letters(input(greet_text)))
