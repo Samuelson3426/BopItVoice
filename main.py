@@ -135,5 +135,10 @@ def dash_string_for(string):
 
 playsound(voices.bop_it())
 while True:
-    print(dash_string_for(greet_text))
-    bopit_say(conv_str_int_to_three_letters(input(greet_text)))
+    try:
+        print(dash_string_for(greet_text))
+        bopit_say(conv_str_int_to_three_letters(input(greet_text)))
+    except KeyboardInterrupt as e:
+        print("\nBye :)")
+        playsound(voices.random_error())
+        break
