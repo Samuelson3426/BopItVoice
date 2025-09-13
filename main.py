@@ -118,13 +118,15 @@ def bopit_say(numberstr):
     if numberstr == "count": # invalid value from counting finish
         print()
         return
+    elif numberstr == None:
+        numberstr = "No"
 
     try:
         if int(numberstr) < 1 or int(numberstr) > 999:
             voice_list = [voices.random_error()]
         else:
             voice_list = get_voice_list(numberstr)
-    except TypeError:
+    except (TypeError, ValueError):
         voice_list = [voices.random_error()]
 
     print()
