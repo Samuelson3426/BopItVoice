@@ -88,14 +88,17 @@ def get_voice_list(numstr): # will return a list of voices to play to sound like
     return voice_list
 
 def count_to_999():
-    for i in range(1000):
-        if i > 0:
-            bopit_say(conv_str_int_to_three_letters(str(i)))
+    try:
+        for i in range(1000):
+            if i > 0:
+                bopit_say(conv_str_int_to_three_letters(str(i)))
+    except KeyboardInterrupt:
+        return
 
 def conv_str_int_to_three_letters(str_int):
     if str_int == "":
         count_to_999()
-        return
+        return "count" # invalid value
     
     new_str = ""
     
@@ -112,12 +115,16 @@ def conv_str_int_to_three_letters(str_int):
         
             
 def bopit_say(numberstr):
+    if numberstr == "count": # invalid value from counting finish
+        print()
+        return
+
     try:
         if int(numberstr) < 1 or int(numberstr) > 999:
             voice_list = [voices.random_error()]
         else:
             voice_list = get_voice_list(numberstr)
-    except:
+    except TypeError:
         voice_list = [voices.random_error()]
 
     print()
@@ -133,12 +140,18 @@ def dash_string_for(string):
         newstr += '='
     return newstr
 
-playsound(voices.bop_it())
-while True:
-    try:
-        print(dash_string_for(greet_text))
-        bopit_say(conv_str_int_to_three_letters(input(greet_text)))
-    except KeyboardInterrupt as e:
-        print("\nBye :)")
-        playsound(voices.random_error())
-        break
+def main():
+    playsound(voices.bop_it())
+    while True:
+        try:
+            print(dash_string_for(greet_text))
+            usr_input = input(greet_text)
+        except KeyboardInterrupt as e:
+            print("\nBye :)")
+            playsound(voices.random_error())
+            break
+
+        bopit_say(conv_str_int_to_three_letters(usr_input))
+
+if __name__ == "__main__":
+    main()
