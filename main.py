@@ -1,7 +1,7 @@
 try:
     from playsound3 import playsound
 except ModuleNotFoundError as e:
-    raise ModuleNotFoundError("Please install playsound3 using pip: 'pip install playsound3'")
+    raise ModuleNotFoundError("Please install playsound3 using pip: 'pip install playsound3==3.2.4'")
 
 try:
     import voices
