@@ -8,6 +8,8 @@ try:
 except:
     raise FileNotFoundError("main.py needs to be in the same directory as voices.py to function correctly.")
 
+from sys import argv
+
 greet_text = 'Enter number for Bop It to say (1-999): '
 
 def gen_one_digit(numstr, vl): # pretty simple - add plain number if not 0
@@ -155,5 +157,8 @@ def main():
 
         bopit_say(conv_str_int_to_three_letters(usr_input))
 
-if __name__ == "__main__":
+if len(argv) > 1:
+    if argv[1] == "count" or argv[1] == "Count" or argv[1] == "-count":
+        count_to_999()
+elif __name__ == "__main__":
     main()
