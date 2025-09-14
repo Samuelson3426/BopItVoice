@@ -103,8 +103,8 @@ def count_to_999():
     except KeyboardInterrupt:
         return
     
-def countdown_from_10():
-    i = 10
+def countdown_from(start_num):
+    i = start_num
     try:
         while i > 0:
             init_time = time.time()
@@ -179,6 +179,10 @@ if len(argv) > 1:
     if argv[1] == "count" or argv[1] == "Count" or argv[1] == "-count":
         count_to_999()
     elif argv[1] == "countdown" or "Countdown" or "-countdown":
-        countdown_from_10()
+        try:
+            countdown_from(int(argv[2]))
+        except ValueError as e:
+            print("A number must follow countdown!")
+            playsound(voices.random_error())
 elif __name__ == "__main__":
     main()
