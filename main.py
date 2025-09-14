@@ -91,6 +91,7 @@ def get_voice_list(numstr): # will return a list of voices to play to sound like
     return voice_list
 
 def count_to_999():
+    count_start_time = time.time()
     try:
         for i in range(1000):
             if i > 0:
@@ -98,6 +99,7 @@ def count_to_999():
                 bopit_say(conv_str_int_to_three_letters(str(i)))
                 while (time.time() - init_time) < 1:
                     pass
+                print(f"Behind realtime clock by {round((time.time()-count_start_time)-i, 4)} seconds.")
     except KeyboardInterrupt:
         return
     
