@@ -9,6 +9,7 @@ except:
     raise FileNotFoundError("main.py needs to be in the same directory as voices.py to function correctly.")
 
 from sys import argv
+import time
 
 greet_text = 'Enter number for Bop It to say (1-999): '
 
@@ -93,7 +94,22 @@ def count_to_999():
     try:
         for i in range(1000):
             if i > 0:
+                init_time = time.time()
                 bopit_say(conv_str_int_to_three_letters(str(i)))
+                while (time.time() - init_time) < 1:
+                    pass
+    except KeyboardInterrupt:
+        return
+    
+def countdown_from_10():
+    i = 10
+    try:
+        while i > 0:
+            init_time = time.time()
+            bopit_say(conv_str_int_to_three_letters(str(i)))
+            i-=1
+            while (time.time() - init_time) < 1:
+                pass
     except KeyboardInterrupt:
         return
 
@@ -160,5 +176,7 @@ def main():
 if len(argv) > 1:
     if argv[1] == "count" or argv[1] == "Count" or argv[1] == "-count":
         count_to_999()
+    elif argv[1] == "countdown" or "Countdown" or "-countdown":
+        countdown_from_10()
 elif __name__ == "__main__":
     main()
