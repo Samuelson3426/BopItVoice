@@ -215,5 +215,9 @@ elif number_argnum != -1:
     bopit_say(conv_str_int_to_three_letters(argv[number_argnum]))
 
     
-elif __name__ == "__main__":
+elif __name__ == "__main__" and len(argv) == 1:
     main()
+
+else: 
+    print("Huh?")
+    playsound(voices.random_error())
