@@ -32,20 +32,20 @@ def gen_ten_digit(numstr, vl): # digit 2 - gets complicated with teens here
             vl.append(voices.plain_numbers()[10])
             return vl
         #11
-        if int(numstr[2]) ==  1:
+        elif int(numstr[2]) ==  1:
             vl.append(voices.plain_numbers()[11])
             return vl
         #12
-        if int(numstr[2]) == 2:
+        elif int(numstr[2]) == 2:
             vl.append(voices.plain_numbers()[12])
             return vl
         #13
-        if int(numstr[2]) == 3:
+        elif int(numstr[2]) == 3:
             vl.append(voices.thir())
             vl.append(voices.teen())
             return vl
         #14
-        if int(numstr[2]) == 5:
+        elif int(numstr[2]) == 5:
             vl.append(voices.fif())
             vl.append(voices.teen())
             return vl
