@@ -162,6 +162,12 @@ def dash_string_for(string):
         newstr += '='
     return newstr
 
+def get_arg_num(given_arg_lc):
+    for i in range(len(argv)):
+        if given_arg_lc.lower() == argv[i].lower():
+            return i
+    return -1
+
 def main():
     playsound(voices.bop_it())
     while True:
@@ -175,13 +181,16 @@ def main():
 
         bopit_say(conv_str_int_to_three_letters(usr_input))
 
+count_argnum = get_arg_num("count")
+countdown_argnum = get_arg_num("countdown")
+
 if len(argv) > 1:
-    if argv[1] == "count" or argv[1] == "Count" or argv[1] == "-count":
+    if count_argnum != -1:
         count_to_999()
-    elif argv[1] == "countdown" or "Countdown" or "-countdown":
+    elif countdown_argnum != -1:
         try:
-            countdown_from(int(argv[2]))
-        except ValueError as e:
+            countdown_from(int(argv[countdown_argnum+1]))
+        except (ValueError, IndexError) as e:
             print("A number must follow countdown!")
             playsound(voices.random_error())
 elif __name__ == "__main__":
