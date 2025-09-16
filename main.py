@@ -165,9 +165,15 @@ def dash_string_for(string):
         newstr += '='
     return newstr
 
-def get_arg_num(given_arg_lc):
+def search_arg_num(given_arg_lc):
     for i in range(len(argv)):
         if given_arg_lc.lower() == argv[i].lower():
+            return i
+    return -1
+
+def search_int_arg():
+    for i in range(len(argv)):
+        if argv[i].isdigit():
             return i
     return -1
 
@@ -184,24 +190,30 @@ def main():
 
         bopit_say(conv_str_int_to_three_letters(usr_input))
 
-count_argnum = get_arg_num("count")
-countdown_argnum = get_arg_num("countdown")
+number_argnum = search_int_arg()
+count_argnum = search_arg_num("count")
+countdown_argnum = search_arg_num("countdown")
 
-if len(argv) > 1:
-    if count_argnum != -1:
-        count_to_999()
-    elif countdown_argnum != -1:
-        try:
-            starting_num = int(argv[countdown_argnum+1])
-            if starting_num < 1 or starting_num > 999:
-                raise CountdownOutOfRange
+if count_argnum != -1:
+    count_to_999()
 
-            countdown_from(int(argv[countdown_argnum+1]))
-        except (ValueError, IndexError) as e:
-            print("A number must follow countdown!")
-            playsound(voices.random_error())
-        except CountdownOutOfRange:
-            print("Countdown must begin with numbers ranging from 1-999!")
-            playsound(voices.random_error())
+elif countdown_argnum != -1:
+    try:
+        starting_num = int(argv[countdown_argnum+1])
+        if starting_num < 1 or starting_num > 999:
+            raise CountdownOutOfRange
+        
+        countdown_from(int(argv[countdown_argnum+1]))
+    except (ValueError, IndexError) as e:
+        print("A number must follow countdown!")
+        playsound(voices.random_error())
+    except CountdownOutOfRange:
+        print("Countdown must begin with numbers ranging from 1-999!")
+        playsound(voices.random_error())
+
+elif number_argnum != -1:
+    bopit_say(conv_str_int_to_three_letters(argv[number_argnum]))
+
+    
 elif __name__ == "__main__":
     main()
