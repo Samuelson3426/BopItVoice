@@ -11,6 +11,9 @@ except:
 from sys import argv
 import time
 
+class CountdownOutOfRange(Exception):
+    pass
+
 greet_text = 'Enter number for Bop It to say (1-999): '
 
 def gen_one_digit(numstr, vl): # pretty simple - add plain number if not 0
@@ -189,9 +192,16 @@ if len(argv) > 1:
         count_to_999()
     elif countdown_argnum != -1:
         try:
+            starting_num = int(argv[countdown_argnum+1])
+            if starting_num < 1 or starting_num > 999:
+                raise CountdownOutOfRange
+
             countdown_from(int(argv[countdown_argnum+1]))
         except (ValueError, IndexError) as e:
             print("A number must follow countdown!")
+            playsound(voices.random_error())
+        except CountdownOutOfRange:
+            print("Countdown must begin with numbers ranging from 1-999!")
             playsound(voices.random_error())
 elif __name__ == "__main__":
     main()
