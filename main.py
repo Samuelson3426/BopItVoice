@@ -55,19 +55,19 @@ def gen_ten_digit(numstr, vl): # digit 2 - gets complicated with teens here
         return vl
     
     #TWENTIES
-    if int(numstr[1]) == 2:
+    elif int(numstr[1]) == 2:
         vl.append(voices.twen())
         vl.append(voices.ty())
         return gen_one_digit(numstr, vl)
     
     #THIRTIES
-    if int(numstr[1]) == 3:
+    elif int(numstr[1]) == 3:
         vl.append(voices.thir())
         vl.append(voices.ty())
         return gen_one_digit(numstr, vl)
     
     #FIFTIES
-    if int(numstr[1]) == 5:
+    elif int(numstr[1]) == 5:
         vl.append(voices.fif())
         vl.append(voices.ty())
         return gen_one_digit(numstr, vl)
