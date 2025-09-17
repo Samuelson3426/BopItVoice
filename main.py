@@ -106,7 +106,7 @@ def count_to_999():
     except KeyboardInterrupt:
         return
     
-def countdown_from(start_num):
+def countdown_from(start_num): # user can input the 'countdown' arg followed by a starting number. Counts down to 1.
     i = start_num
     try:
         while i > 0:
