@@ -99,7 +99,7 @@ def count_to_999():
         for i in range(1000):
             if i > 0:
                 init_time = time.time()
-                bopit_say(conv_str_int_to_three_letters(str(i)))
+                bopit_say(conv_str_int_to_three_chars(str(i)))
                 while (time.time() - init_time) < 1:
                     pass
                 print(f"Behind realtime clock by {round((time.time()-count_start_time)-i, 4)} seconds.")
@@ -111,17 +111,17 @@ def countdown_from(start_num):
     try:
         while i > 0:
             init_time = time.time()
-            bopit_say(conv_str_int_to_three_letters(str(i)))
+            bopit_say(conv_str_int_to_three_chars(str(i)))
             i-=1
             while (time.time() - init_time) < 1:
                 pass
     except KeyboardInterrupt:
         return
 
-def conv_str_int_to_three_letters(str_int):
+def conv_str_int_to_three_chars(str_int): # converts a given string like '4' and return new string '004'
     if str_int == "":
         count_to_999()
-        return "count" # invalid value
+        return "count-finished" # invalid value
     
     new_str = ""
     
@@ -138,7 +138,7 @@ def conv_str_int_to_three_letters(str_int):
         
             
 def bopit_say(numberstr):
-    if numberstr == "count": # invalid value from counting finish
+    if numberstr == "count-finished": # invalid value from counting finish
         print()
         return
     elif numberstr == None:
@@ -188,7 +188,7 @@ def main():
             playsound(voices.random_error())
             break
 
-        bopit_say(conv_str_int_to_three_letters(usr_input))
+        bopit_say(conv_str_int_to_three_chars(usr_input))
 
 # Argument processing
 
@@ -214,7 +214,7 @@ elif countdown_argnum != -1:
         playsound(voices.random_error())
 
 elif number_argnum != -1:
-    bopit_say(conv_str_int_to_three_letters(argv[number_argnum]))
+    bopit_say(conv_str_int_to_three_chars(argv[number_argnum]))
 
     
 elif __name__ == "__main__" and len(argv) == 1:

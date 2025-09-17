@@ -10,7 +10,7 @@ def bop_it():
 
 def plain_numbers():
     sdv = []
-    for i in range(13): #first 12 numbers
+    for i in range(13): # all low numbers with a single voiceline
         if i != 0:
             sdv.append(os.path.join(VOICE_PATH, f'{i}.wav'))
         else:
